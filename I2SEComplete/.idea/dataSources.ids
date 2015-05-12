@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="MySQL - officei2se@localhost" uuid="982cabfb-f4e8-47ff-ae54-76029da4a34d">
+    <database-info product="MySQL" version="5.6.20" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="officei2se"/>
+    <table name="tbldocument" schema="" catalog="officei2se" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="link" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="project" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="security" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="documentpj" columns="project" ref-table="tblproject" ref-schema="" ref-catalog="officei2se" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="documentpj_idx" unique="false" columns="project"/>
+    </table>
+    <table name="tblproject" schema="" catalog="officei2se" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="detail" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="startTime" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="endTime" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="documentpj" table="tbldocument" schema="" catalog="officei2se" columns="project"/>
+      <exported-key name="userProject" table="tbluser" schema="" catalog="officei2se" columns="project"/>
+    </table>
+    <table name="tblrole" schema="" catalog="officei2se" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="role" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="rolerole" table="tblroleuser" schema="" catalog="officei2se" columns="role"/>
+    </table>
+    <table name="tblroleuser" schema="" catalog="officei2se" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="tbluser" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="role" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="rolerole" columns="role" ref-table="tblrole" ref-schema="" ref-catalog="officei2se" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="userrole" columns="tbluser" ref-table="tbluser" ref-schema="" ref-catalog="officei2se" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="rolerole_idx" unique="false" columns="role"/>
+      <index name="userrole_idx" unique="false" columns="tbluser"/>
+    </table>
+    <table name="tbltask" schema="" catalog="officei2se" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="detail" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="startTime" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="endTime" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="approval" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="userTask" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="creator" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="reviewer" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="creator" columns="creator" ref-table="tbluser" ref-schema="" ref-catalog="officei2se" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="reviewer" columns="reviewer" ref-table="tbluser" ref-schema="" ref-catalog="officei2se" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="userTask" columns="userTask" ref-table="tbluser" ref-schema="" ref-catalog="officei2se" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="creator_idx" unique="false" columns="creator"/>
+      <index name="reviewer_idx" unique="false" columns="reviewer"/>
+      <index name="userTask_idx" unique="false" columns="userTask"/>
+    </table>
+    <table name="tbluser" schema="" catalog="officei2se" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="username" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="project" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="userProject" columns="project" ref-table="tblproject" ref-schema="" ref-catalog="officei2se" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="userrole" table="tblroleuser" schema="" catalog="officei2se" columns="tbluser"/>
+      <exported-key name="creator" table="tbltask" schema="" catalog="officei2se" columns="creator"/>
+      <exported-key name="reviewer" table="tbltask" schema="" catalog="officei2se" columns="reviewer"/>
+      <exported-key name="userTask" table="tbltask" schema="" catalog="officei2se" columns="userTask"/>
+      <index name="userProject_idx" unique="false" columns="project"/>
+    </table>
+  </data-source>
+</component>

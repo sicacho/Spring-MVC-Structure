@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="I2SEComplete:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="I2SEComplete.war">
+      <element id="artifact" artifact-name="I2SEComplete:war exploded" />
+    </root>
+  </artifact>
+</component>

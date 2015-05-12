@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="taski2se">
+
+        <class>com.task.entity.Tbldocument</class>
+        <class>com.task.entity.Tblproject</class>
+        <class>com.task.entity.Tblrole</class>
+        <class>com.task.entity.Tblroleuser</class>
+        <class>com.task.entity.Tbltask</class>
+        <class>com.task.entity.Tbluser</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/officei2se"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="123456"/>
+        </properties>
+    </persistence-unit>
+</persistence>
